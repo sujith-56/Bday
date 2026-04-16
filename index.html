@@ -473,6 +473,12 @@ videos.forEach(video => {
     });
 
 });
+/* ✅ FORCE SHOW (MOBILE FIX) */
+window.addEventListener("load", () => {
+    document.querySelectorAll('.section').forEach(sec => {
+        sec.classList.add('show');
+    });
+});
 
 
 </script>
