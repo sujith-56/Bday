@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<!-- ✅ MOBILE FIX -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For My Love 🩵</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+<style>
+
+/* 🔥 GLOBAL FONT IMPROVEMENT */
+html {
+    font-size: 18px;
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #0f0f0f;
+    color: white;
+    scroll-behavior: smooth;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 1.8rem; }
+p  { font-size: 1.1rem; }
+
+/* 🎬 PROGRESS BAR */
+#progressBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 5px;
+    background: red;
+    width: 0%;
+    z-index: 9999;
+}
+
+/* 🎬 COVER */
+.cover {
+    height: 100vh;
+    background: url('images/cover1.jpeg') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.cover::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+}
+.cover h1 {
+    position: relative;
+    text-align: center;
+    animation: fadeZoom 2s ease;
+}
+
+@keyframes fadeZoom {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* ✨ SECTION */
+.section {
+    padding: 60px 20px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(60px) scale(0.95);
+    transition: all 1s ease;
+}
+.section.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* 📸 GALLERY */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+}
+.gallery img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    transition: all 0.4s ease;
+}
+.gallery img:hover {
+    transform: scale(1.08);
+    box-shadow: 0 10px 25px rgba(255, 77, 109, 0.4);
+}
+
+
+/* 🎥 PREMIUM VIDEO EFFECT */
+.gallery video {
+    width: 100%;
+    border-radius: 12px;
+    transition: all 0.4s ease;
+    transform: scale(1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Hover effect (desktop) */
+ /* Active tap effect (mobile) */
+.gallery video:active {
+    transform: scale(1.05);
+}
+
+
+
+/* ✨ INTERACTION */
+.gallery video:hover {
+    transform: scale(1.08);
+    box-shadow: 0 15px 35px rgba(255, 77, 109, 0.5);
+}
+
+
+/* 💌 TYPEWRITER */
+#typeText {
+    font-size: 20px;
+    max-width: 90%;
+    margin: auto;
+    border-right: 2px solid white;
+    white-space: normal;
+    line-height: 1.6;
+}
+
+/* 📝 NOTES */
+.notes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+.note {
+    background: #fff8a6;
+    color: black;
+    padding: 15px;
+    width: 180px;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+/* 🔒 SECRET */
+#secretGallery {
+    display: none;
+    margin-top: 20px;
+}
+
+/* BUTTON */
+button {
+    padding: 12px 18px;
+    font-size: 16px;
+    background: #ff4d6d;
+    border: none;
+    border-radius: 8px;
+    color: white;
+}
+
+/* 🎵 MUSIC BUTTON */
+#musicBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #ff4d6d;
+    padding: 16px;
+    border-radius: 50%;
+    font-size: 22px;
+    z-index: 9999;
+}
+
+/* 💫 HEARTS */
+.heart {
+    position: fixed;
+    bottom: -20px;
+    font-size: 22px;
+    color: #ff4d6d;
+    animation: floatUp linear forwards;
+    z-index: 9999;
+    pointer-events: none;
+}
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-110vh); opacity: 0; }
+}
+
+/* 📱 MOBILE PERFECT */
+@media(max-width:600px){
+
+    body {
+        font-size: 18px;
+    }
+
+    .cover h1 {
+        font-size: 32px;
+        padding: 10px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    .section {
+        padding: 40px 15px;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .note {
+        width: 45%;
+        font-size: 14px;
+    }
+
+    #musicBtn {
+        font-size: 24px;
+        padding: 18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="progressBar"></div>
+
+<!-- 🎵 MUSIC -->
+<audio id="music" loop>
+    <source src="musc/asela_.mp3" type="audio/mpeg">
+</audio>
+<div id="musicBtn" onclick="toggleMusic()">🎵</div>
+
+<!-- COVER -->
+<div class="cover">
+    <h1>Happy Birthday ❤️</h1>
+</div>
+
+<!-- STORY -->
+<div class="section">
+    <h2>Our Story 💖</h2>
+    <p>From the moment I saw you… everything changed ❤️</p>
+</div>
+
+<!-- LETTER -->
+<div class="section">
+    <h2>My Letter 💌</h2>
+    <p id="typeText"></p>
+</div>
+
+<!-- NOTES -->
+<div class="section">
+    <h2>Notes 💛</h2>
+    <div class="notes">
+        <div class="note">You are my happiness 😍</div>
+        <div class="note">Cheers to you, my love 🥂</div>
+        <div class="note">Always better together 💑</div>
+        <div class="note">You and me 🤍</div>
+    </div>
+</div>
+
+<!-- GALLERY -->
+<div class="section">
+    <h2>Memories 📸</h2>
+    <div class="gallery">
+        
+         <img src="images/pic0.jpeg">
+        <img src="images/pic32.jpeg">
+        <img src="images/pic2.jpeg">
+        <img src="images/cover1.jpeg">
+        <img src="images/pic4.jpeg">
+        <img src="images/pic5.jpeg">
+        <img src="images/pic1.jpeg">
+        <img src="images/pic6.jpeg">
+        <img src="images/pic7.jpeg">
+        <img src="images/pic8.jpeg">
+        <img src="images/pic9.jpeg">
+        <img src="images/pic10.jpeg">
+        <img src="images/pic31.jpeg">
+        <img src="images/pic11.jpeg">
+        <img src="images/pic12.jpeg">
+        <img src="images/pic13.jpeg">
+        <img src="images/pic14.jpeg">
+        <img src="images/pic15.jpeg">
+        <img src="images/pic16.jpeg">
+        <img src="images/pic3.jpeg">
+        <img src="images/pic33.jpeg">
+        <img src="images/pic17.jpeg">
+        <img src="images/pic18.jpeg">
+        <img src="images/pic19.jpeg">
+        <img src="images/pic20.jpeg">
+        <img src="images/pic21.jpeg">
+        <img src="images/pic22.jpeg">
+        <img src="images/pic34.jpeg">
+        <img src="images/pic23.jpeg">
+        <img src="images/pic24.jpeg">
+         <img src="images/pic35.jpeg">
+        <img src="images/pic27.jpeg">
+        <img src="images/pic28.jpeg">
+        <img src="images/pic29.jpeg">
+        <img src="images/pic30.jpeg">
+        
+        
+        <img src="images/sufi.jpeg">
+        
+        <img src="images/pic25.jpeg">
+        <img src="images/pic36.jpeg">
+
+        <video muted playsinline class="secret-video">
+        <source src="images/vid1.mp4" type="video/mp4">
+        </video>
+        <video muted playsinline class="secret-video">
+        <source src="images/vid2.mp4" type="video/mp4">
+        </video>
+    </div>
+</div>
+
+<!-- SECRET -->
+<div class="section">
+    <h2>Secret 🔒</h2>
+    <input type="password" id="password">
+    <button onclick="checkPassword()">Unlock</button>
+
+    <div id="secretGallery" class="gallery">
+       <img src="secret/sec1.jpeg">
+
+        <img src="secret/sec2.jpeg">
+         <img src="secret/B1.jpeg">
+        <img src="secret/sec3.jpeg">
+         <img src="secret/B6.jpeg">
+         <img src="secret/B4.jpeg">
+        <img src="secret/sec4.jpeg">
+         <img src="secret/B2.jpeg">
+        <img src="secret/sec5.jpeg">
+         <img src="secret/B5.jpeg">
+        <img src="secret/sec6.jpeg">
+         <img src="secret/B3.jpeg">
+         <video muted playsinline class="secret-video">
+        <source src="secret/sec10.mp4" type="video/mp4">
+        </video>
+        <video muted playsinline class="secret-video">
+        <source src="secret/A4.mp4" type="video/mp4">
+        </video>
+        <video muted playsinline class="secret-video">
+        <source src="secret/sec7.mp4" type="video/mp4">
+        </video>
+        <video muted playsinline class="secret-video">
+        <source src="secret/A3.mp4" type="video/mp4">
+        </video>
+        <video muted playsinline class="secret-video">
+        <source src="secret/sec8.mp4" type="video/mp4">
+        </video>
+        <video muted playsinline class="secret-video">
+        <source src="secret/A2.mp4" type="video/mp4">
+        </video>
+        <video muted playsinline class="secret-video">
+        <source src="secret/sec9.mp4" type="video/mp4">
+        </video>
+        <video muted playsinline class="secret-video">
+        <source src="secret/A1.mp4" type="video/mp4">
+        </video>
+        <video muted playsinline class="secret-video">
+        <source src="secret/A5.mp4" type="video/mp4">
+        </video>
+ 
+    </div>
+</div>
+
+<script>
+
+/* 🎬 PROGRESS BAR */
+window.addEventListener("scroll", () => {
+    let scrolled = (document.documentElement.scrollTop /
+    (document.documentElement.scrollHeight - document.documentElement.clientHeight)) * 100;
+    document.getElementById("progressBar").style.width = scrolled + "%";
+});
+
+/* ✨ SCROLL ANIMATION */
+const sections = document.querySelectorAll('.section');
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+        }
+    });
+}, { threshold: 0.2 });
+
+sections.forEach(sec => observer.observe(sec));
+
+/* ⌨️ TYPEWRITER */
+const text = "You are the best thing that ever happened to me 💝\nEvery moment with you is magical ✨\nI love you forever 💖";
+let i = 0;
+
+function typeWriter() {
+    if (i < text.length) {
+        document.getElementById("typeText").innerHTML += 
+            text.charAt(i) === "\n" ? "<br>" : text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 40);
+    }
+}
+typeWriter();
+
+/* 🔒 PASSWORD */
+function checkPassword() {
+    if(document.getElementById("password").value === "1704"){
+        document.getElementById("secretGallery").style.display = "grid";
+    } else {
+        alert("Wrong password 😢");
+    }
+}
+
+/* 🎵 MUSIC */
+function toggleMusic() {
+    let m = document.getElementById("music");
+    m.paused ? m.play() : m.pause();
+}
+
+/* 💫 HEARTS */
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "🩵";
+
+    heart.style.left = Math.random() * 100 + "vw";
+    let duration = Math.random() * 3 + 3;
+    heart.style.animationDuration = duration + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), duration * 1000);
+}
+
+setInterval(createHeart, 700);
+
+
+
+/* 🎥 VIDEO HOVER PLAY EFFECT */
+const videos = document.querySelectorAll("video");
+
+videos.forEach(video => {
+
+    // Play on hover
+    video.addEventListener("mouseenter", () => {
+        video.play();
+    });
+
+    // Pause on leave
+    video.addEventListener("mouseleave", () => {
+        video.pause();
+        video.currentTime = 0;
+    });
+
+    // Mobile tap support
+    video.addEventListener("click", () => {
+        if (video.paused) {
+            video.play();
+        } else {
+            video.pause();
+        }
+    });
+
+});
+
+
+</script>
+
+</body>
+</html>
